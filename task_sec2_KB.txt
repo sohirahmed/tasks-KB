@@ -1,0 +1,36 @@
+         CLIPS (6.30 3/17/15)
+CLIPS> //sec2//
+//sec2//
+CLIPS> question1
+question1
+CLIPS> (deftemplate animal
+   (slot type))
+CLIPS> (defrule check_animal
+   (animal (type ?t))
+   (test (or (eq ?t duck) (eq ?t turtle)))
+   =>
+   (printout t "Animal type: " ?t crlf))
+CLIPS> (assert (animal (type duck)))
+<Fact-1>
+CLIPS> (assert (animal (type turtle)))
+<Fact-2>
+CLIPS> (assert (animal (type lion)))
+<Fact-3>
+CLIPS> (run)
+Animal type: turtle
+Animal type: duck
+CLIPS> //question2//
+//question2//
+CLIPS> (deftemplate rect
+   (slot height)
+   (slot width))
+CLIPS> (defrule perimeter
+   (rect (height ?h) (width ?w))
+   =>
+   (bind ?p (* 2 (+ ?h ?w)))
+   (printout t "Perimeter of rectangle: " ?p crlf))
+CLIPS> (assert (rect (height 4) (width 6)))
+<Fact-4>
+CLIPS> (run)
+Perimeter of rectangle: 20
+CLIPS> 

@@ -1,0 +1,35 @@
+         CLIPS (6.30 3/17/15)
+CLIPS> //sec1//
+//sec1//
+CLIPS> question1
+question1
+CLIPS> (deftemplate animal
+   (slot type))
+CLIPS> (defrule check_animal
+   (animal (type ?t&~dog))
+   =>
+   (printout t "Animal type: " ?t crlf))
+CLIPS> (assert (animal (type cow)))
+<Fact-1>
+CLIPS> (assert (animal (type dog)))
+<Fact-2>
+CLIPS> (run)
+Animal type: cow
+CLIPS> question2
+question2
+CLIPS> (deftemplate number
+   (slot value))
+CLIPS> (defrule pos_int
+   (number (value ?n))
+   (test (and (integerp ?n) (> ?n 0)))
+   =>
+   (printout t "The number is a positive integer" crlf))
+CLIPS> (assert (number (value 5)))
+<Fact-3>
+CLIPS> (assert (number (value -3)))
+<Fact-4>
+CLIPS> (assert (number (value 3.5)))
+<Fact-5>
+CLIPS> (run)
+The number is a positive integer
+CLIPS> 
